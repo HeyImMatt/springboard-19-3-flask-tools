@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, render_template
+from flask import Flask, redirect, request, render_template, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import satisfaction_survey
 
@@ -16,5 +16,9 @@ def home():
 
 @app.route('/questions/<int:question_id>')
 def question(question_id):
-    question = satisfaction_survey.questions[question_id]
-    return render_template('question.html', question=question)
+    if question_id < len(satisfaction_survey.questions):
+        question = satisfaction_survey.questions[question_id]
+        return render_template('question.html', question=question)
+    else:
+        flash('Oops! That\'s not a question. Please start here.')
+        return redirect('/')
