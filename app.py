@@ -5,3 +5,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '1234'
 
 debug = DebugToolbarExtension(app)
+
+responses = []
+
+@app.route('/')
+def home():
+    return render_template('index.html')
