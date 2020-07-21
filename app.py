@@ -16,9 +16,6 @@ def home():
 
 @app.route('/questions/<int:question_id>')
 def question(question_id):
-    # if (responses is None):
-    #     flash('Oops! That\'s not a question. Please start here.')
-    #     return redirect('/')
     
     if (question_id != len(responses)):
         flash('Oops! Invalid question. Please continue here.')
