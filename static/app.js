@@ -1,9 +1,9 @@
-const startSurveyBtn = document.querySelector('#start-survey')
+// const startSurveyBtn = document.querySelector('#start-survey')
 
-if (startSurveyBtn) {
-  startSurveyBtn.addEventListener('click', startSurvey)
+// if (startSurveyBtn) {
+//   startSurveyBtn.addEventListener('click', startSurvey)
   
-  function startSurvey() {
-    window.location.href = '/questions/0';
-  }
-}
+//   function startSurvey() {
+//     window.location.href = '/questions/0';
+//   }
+// }
