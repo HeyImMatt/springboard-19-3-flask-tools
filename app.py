@@ -8,8 +8,6 @@ app.config['SECRET_KEY'] = '1234'
 debug = DebugToolbarExtension(app)
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
-# responses = []
-
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST': 
@@ -20,6 +18,7 @@ def home():
 
 @app.route('/questions/<int:question_id>')
 def question(question_id):
+    responses = session.get('responses')
     if (question_id != len(responses)):
         flash('Oops! Invalid question. Please continue here.')
         return redirect(f'/questions/{len(responses)}')
@@ -33,8 +32,10 @@ def question(question_id):
 
 @app.route('/answer', methods=['POST'])
 def save_answer():
+    responses = session.get('responses')
     answer = request.form['answer']
     responses.append(answer)
+    session['responses'] = responses
     id = len(responses)
     return redirect(f'/questions/{id}')
 
