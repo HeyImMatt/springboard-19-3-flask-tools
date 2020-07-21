@@ -16,20 +16,26 @@ def home():
 
 @app.route('/questions/<int:question_id>')
 def question(question_id):
-    if question_id < len(satisfaction_survey.questions):
-        question = satisfaction_survey.questions[question_id]
-        return render_template('question.html', question=question)
-    else:
-        flash('Oops! That\'s not a question. Please start here.')
-        return redirect('/')
+    # if (responses is None):
+    #     flash('Oops! That\'s not a question. Please start here.')
+    #     return redirect('/')
+    
+    if (question_id != len(responses)):
+        flash('Oops! Invalid question. Please continue here.')
+        return redirect(f'/questions/{len(responses)}')
+    
+    if question_id == len(satisfaction_survey.questions):
+        return redirect('/thanks')
+
+    question = satisfaction_survey.questions[question_id]
+    return render_template('question.html', question=question)
+        
 
 @app.route('/answer', methods=['POST'])
 def save_answer():
     answer = request.form['answer']
     responses.append(answer)
     id = len(responses)
-    if id == len(satisfaction_survey.questions):
-        return redirect('/thanks')
     flash('Answer Saved')
     return redirect(f'/questions/{id}')
 
