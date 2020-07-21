@@ -28,6 +28,11 @@ def save_answer():
     answer = request.form['answer']
     responses.append(answer)
     id = len(responses)
-    print(responses)
+    if id == len(satisfaction_survey.questions):
+        return redirect('/thanks')
     flash('Answer Saved')
     return redirect(f'/questions/{id}')
+
+@app.route('/thanks')
+def thanks():
+    return render_template('thanks.html')
