@@ -22,3 +22,12 @@ def question(question_id):
     else:
         flash('Oops! That\'s not a question. Please start here.')
         return redirect('/')
+
+@app.route('/answer', methods=['POST'])
+def save_answer():
+    answer = request.form['answer']
+    responses.append(answer)
+    id = len(responses)
+    print(responses)
+    flash('Answer Saved')
+    return redirect(f'/questions/{id}')

@@ -9,8 +9,8 @@
     <h4>{{ question.question }}</h4>
     {% for choice in question.choices %}
     <div class="form-check">
-      <input class="form-check-input" type="radio" id="option-{{ choice }}" name="{{ question.question }}" value="{{ choice }}">
-      <label class="form-check-label" for="option-{{ choice }}">
+      <input class="form-check-input" type="radio" id="option-{{ choice }}" name="answer" value="{{ choice }}">
+      <label class="form-check-label" for="answer">
         {{ choice }}
       </label>
     </div>
