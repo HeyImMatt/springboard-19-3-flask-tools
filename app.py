@@ -36,7 +36,6 @@ def save_answer():
     answer = request.form['answer']
     responses.append(answer)
     id = len(responses)
-    flash('Answer Saved')
     return redirect(f'/questions/{id}')
 
 @app.route('/thanks')
